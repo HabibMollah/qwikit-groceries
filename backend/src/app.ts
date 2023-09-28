@@ -50,6 +50,27 @@ app.get(`${baseURL}/groceries`, (_req, res) => {
   });
 });
 
+// Get a grocery product by id
+app.get(`${baseURL}/groceries/:id`, (req, res) => {
+  const id = req.params.id;
+
+  const query = `SELECT * FROM groceries WHERE id = ?;`;
+  connection.query(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ message: 'Could not retrieve the product', error: err });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(results[0]);
+  });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server running on http:///localhost:${port}`);
