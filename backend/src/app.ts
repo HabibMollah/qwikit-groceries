@@ -1,5 +1,5 @@
 import express from 'express';
-import mysql, { RowDataPacket } from 'mysql2';
+import mysql, { ResultSetHeader, RowDataPacket } from 'mysql2';
 import 'dotenv/config';
 
 const app = express();
@@ -69,6 +69,41 @@ app.get(`${baseURL}/groceries/:id`, (req, res) => {
 
     res.json(results[0]);
   });
+});
+
+// Update a grocery product by id
+app.put(`${baseURL}/groceries/:id`, (req, res) => {
+  const id = req.params.id;
+  const { title, description, imageURL } = req.body;
+
+  // Validate inputs
+  if (!title) return res.status(400).json({ error: 'Title is required' });
+  if (!description)
+    return res.status(400).json({ error: 'Description is required' });
+  if (!imageURL) return res.status(400).json({ error: 'imageURL is required' });
+
+  const query = `UPDATE groceries
+                  SET title = ?,
+                      description = ?,
+                      imageUrl = ?
+                        WHERE id = ?;`;
+
+  connection.query(
+    query,
+    [title, description, imageURL, id],
+    (err, results: ResultSetHeader) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Could not update the product' });
+      }
+
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+
+      res.json({ message: 'Product updated successfully' });
+    }
+  );
 });
 
 const port = 3000;
