@@ -106,6 +106,25 @@ app.put(`${baseURL}/groceries/:id`, (req, res) => {
   );
 });
 
+// Delete a grocery product by id
+app.delete(`${baseURL}/groceries/:id`, (req, res) => {
+  const id = req.params.id;
+
+  const query = 'DELETE FROM groceries WHERE id = ?';
+  connection.query(query, [id], (err, result: ResultSetHeader) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Could not delete the product' });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json({ message: 'Product deleted successfully' });
+  });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server running on http:///localhost:${port}`);
