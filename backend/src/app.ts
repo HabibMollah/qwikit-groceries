@@ -1,5 +1,5 @@
 import express from 'express';
-import mysql from 'mysql2';
+import mysql, { RowDataPacket } from 'mysql2';
 import 'dotenv/config';
 
 const app = express();
@@ -55,7 +55,7 @@ app.get(`${baseURL}/groceries/:id`, (req, res) => {
   const id = req.params.id;
 
   const query = `SELECT * FROM groceries WHERE id = ?;`;
-  connection.query(query, [id], (err, results) => {
+  connection.query(query, [id], (err, results: RowDataPacket[]) => {
     if (err) {
       console.error(err);
       return res
