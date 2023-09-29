@@ -1,7 +1,6 @@
 'use client';
 import { useSearchContext } from '@/contexts/SearchContext';
 import { Input } from '@nextui-org/input';
-import { useState } from 'react';
 import { TbSearch } from 'react-icons/tb';
 
 export default function SearchBar() {
