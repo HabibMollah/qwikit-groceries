@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <h2 className="text-4xl pt-4">
         {searchValue
-          ? `Products named '${searchValue}'`
+          ? `Find products named '${searchValue}'`
           : 'Browse grocery products'}
       </h2>
     </>
