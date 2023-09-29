@@ -12,7 +12,6 @@ export default function Home() {
           ? `Products named '${searchValue}'`
           : 'Browse grocery products'}
       </h2>
-      <Button>Next UI Button</Button>
     </>
   );
 }
