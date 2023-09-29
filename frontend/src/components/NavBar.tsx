@@ -6,12 +6,10 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-} from '@nextui-org/react';
+} from '@nextui-org/navbar';
 import { TfiShoppingCartFull } from 'react-icons/tfi';
 import { BiAddToQueue } from 'react-icons/bi';
 import Cart from './Cart';
