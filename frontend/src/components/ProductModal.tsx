@@ -34,9 +34,12 @@ export default function ProductModal({
   const { cartItems, setCartItems } = useCartContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const handleAddToCart = () => {
-    const newCartItems = [...cartItems, { id, title, description, imageURL }];
-    setCartItems(newCartItems);
+  const handleAddToCart = (itemID: number) => {
+    if (cartItems.find((item) => item.id === itemID)) return;
+    else {
+      const newCartItems = [...cartItems, { id, title, description, imageURL }];
+      setCartItems(newCartItems);
+    }
   };
 
   return (
@@ -78,7 +81,7 @@ export default function ProductModal({
                   <BiEdit />
                   Edit
                 </Button>
-                <Button color="primary" onClick={handleAddToCart}>
+                <Button color="primary" onClick={() => handleAddToCart(id)}>
                   <MdAddShoppingCart />
                   Add to Cart
                 </Button>
