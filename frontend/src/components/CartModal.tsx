@@ -10,7 +10,7 @@ import {
 import { Button } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/use-disclosure";
 
-export default function ModalComponent({
+export default function CartModal({
   children,
   className,
 }: {

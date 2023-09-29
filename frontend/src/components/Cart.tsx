@@ -1,5 +1,5 @@
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
-import ModalComponent from "./Modal";
+import ModalComponent from "./CartModal";
 import { Badge } from "@nextui-org/badge";
 
 export default function Cart() {
