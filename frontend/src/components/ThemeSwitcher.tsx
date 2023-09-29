@@ -16,6 +16,7 @@ export default function ThemeSwitcher() {
   return (
     <div>
       <Switch
+        className="-mr-[8px] sm:mr-0"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
         defaultSelected
         size="md"
