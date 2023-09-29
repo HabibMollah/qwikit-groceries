@@ -1,13 +1,20 @@
 import getData from '@/requests/getData';
+import Product from './Product';
 
 export default async function Products() {
   const products = await getData();
 
   if (products)
     return (
-      <section className="flex flex-row flex-wrap">
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  py-10 mx-auto">
         {products.map((product) => (
-          <p key={product.id}>{product.title}</p>
+          <Product
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            description={product.description}
+            imageURL={product.imageURL}
+          />
         ))}
       </section>
     );
