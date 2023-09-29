@@ -14,22 +14,10 @@ import {
 } from '@nextui-org/react';
 import { TfiShoppingCartFull } from 'react-icons/tfi';
 import Cart from './Cart';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const menuItems = [
-    'Profile',
-    'Dashboard',
-    'Activity',
-    'Analytics',
-    'System',
-    'Deployments',
-    'My Settings',
-    'Team Settings',
-    'Help & Feedback',
-    'Log Out',
-  ];
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -48,28 +36,30 @@ export default function NavBar() {
         className="hidden sm:flex gap-4"
         justify="center"></NavbarContent>
       <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:list-item">
+          <ThemeSwitcher />
+        </NavbarItem>
         <NavbarItem>
           <Cart />
         </NavbarItem>
+        <NavbarItem>
+          <Button className="hidden sm:list-item" color="primary" size="md">
+            Add A Product
+          </Button>
+        </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? 'primary'
-                  : index === menuItems.length - 1
-                  ? 'danger'
-                  : 'foreground'
-              }
-              className="w-full"
-              href="#"
-              size="lg">
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem>
+          <Button className="w-full" color="primary" size="md">
+            Add A Product
+          </Button>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <div className="flex justify-between">
+            Dark Mode
+            <ThemeSwitcher />
+          </div>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
