@@ -1,5 +1,4 @@
 'use client';
-
 import SearchContextProvider from '@/contexts/SearchContext';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider } from 'next-themes';

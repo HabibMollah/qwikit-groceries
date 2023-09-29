@@ -1,15 +1,13 @@
-'use client';
-import { useSearchContext } from '@/contexts/SearchContext';
+import HeroHeading from '@/components/HeroHeading';
+import { baseURL } from '@/requests/getData';
 
-export default function Home() {
-  const { searchValue } = useSearchContext();
+export default async function Home() {
+  const res = await fetch(`${baseURL}/groceries`);
+  const data = res.json();
+  console.log('hello from server... I hope');
   return (
     <>
-      <h2 className="text-4xl pt-4">
-        {searchValue
-          ? `Find products named '${searchValue}'`
-          : 'Browse grocery products'}
-      </h2>
+      <HeroHeading />
     </>
   );
 }
