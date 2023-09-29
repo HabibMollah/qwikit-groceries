@@ -1,6 +1,4 @@
 'use client';
-import { Button } from '@nextui-org/button';
-import ModalComponent from '../components/Modal';
 import { useSearchContext } from '@/contexts/SearchContext';
 
 export default function Home() {
