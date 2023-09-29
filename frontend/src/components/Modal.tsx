@@ -21,7 +21,7 @@ export default function ModalComponent({
 
   return (
     <div className="flex flex-col gap-2">
-      <Button className={className} onPress={onOpen}>
+      <Button className={className} onClick={onOpen}>
         {children}
       </Button>
 
