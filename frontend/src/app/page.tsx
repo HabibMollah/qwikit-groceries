@@ -1,13 +1,11 @@
 import HeroHeading from '@/components/HeroHeading';
-import { baseURL } from '@/requests/getData';
+import Products from '@/components/Products';
 
-export default async function Home() {
-  const res = await fetch(`${baseURL}/groceries`);
-  const data = res.json();
-  console.log('hello from server... I hope');
+export default function Home() {
   return (
     <>
       <HeroHeading />
+      <Products />
     </>
   );
 }
