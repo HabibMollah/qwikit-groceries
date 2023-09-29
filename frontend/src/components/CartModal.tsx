@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode } from "react";
 
 import {
@@ -9,6 +10,10 @@ import {
 } from "@nextui-org/modal";
 import { Button } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/use-disclosure";
+import { useCartContext } from "@/contexts/CartContext";
+import { Image } from "@nextui-org/image";
+import NextImage from "next/image";
+import { RxCross1 } from "react-icons/rx";
 
 export default function CartModal({
   children,
@@ -17,6 +22,7 @@ export default function CartModal({
   children: ReactNode;
   className?: string | undefined;
 }) {
+  const { cartItems } = useCartContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -33,84 +39,38 @@ export default function CartModal({
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Cart</ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-                <p>
-                  Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit
-                  duis sit officia eiusmod Lorem aliqua enim laboris do dolor
-                  eiusmod. Et mollit incididunt nisi consectetur esse laborum
-                  eiusmod pariatur proident Lorem eiusmod et. Culpa deserunt
-                  nostrud ad veniam. Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nullam pulvinar risus non risus hendrerit
-                  venenatis. Pellentesque sit amet hendrerit risus, sed
-                  porttitor quam. Magna exercitation reprehenderit magna aute
-                  tempor cupidatat consequat elit dolor adipisicing. Mollit
-                  dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et
-                  mollit incididunt nisi consectetur esse laborum eiusmod
-                  pariatur proident Lorem eiusmod et. Culpa deserunt nostrud ad
-                  veniam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-                <p>
-                  Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit
-                  duis sit officia eiusmod Lorem aliqua enim laboris do dolor
-                  eiusmod. Et mollit incididunt nisi consectetur esse laborum
-                  eiusmod pariatur proident Lorem eiusmod et. Culpa deserunt
-                  nostrud ad veniam. Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nullam pulvinar risus non risus hendrerit
-                  venenatis. Pellentesque sit amet hendrerit risus, sed
-                  porttitor quam. Magna exercitation reprehenderit magna aute
-                  tempor cupidatat consequat elit dolor adipisicing. Mollit
-                  dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et
-                  mollit incididunt nisi consectetur esse laborum eiusmod
-                  pariatur proident Lorem eiusmod et. Culpa deserunt nostrud ad
-                  veniam.
-                </p>
+                {cartItems.length > 0 ? (
+                  cartItems.map((item) => (
+                    <div
+                      className="flex items-center justify-between"
+                      key={item.id}
+                    >
+                      <div className="flex items-center gap-2">
+                        <button>
+                          <RxCross1 size={20} color="#f00" />
+                        </button>
+                        <h6>
+                          {item.title.length > 18
+                            ? item.title.slice(0, 18) + "..."
+                            : item.title}
+                        </h6>
+                      </div>
+                      <Image
+                        as={NextImage}
+                        alt={item.title}
+                        className="h-[50px] w-[50px] rounded-xl object-cover"
+                        src={item.imageURL}
+                        quality={50}
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-xl">Your cart is empty.</p>
+                )}
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
