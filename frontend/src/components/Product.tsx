@@ -5,9 +5,19 @@ import { Image } from "@nextui-org/image";
 import NextImage from "next/image";
 import ProductModal from "./ProductModal";
 
-export default function Product({ title, description, imageURL }: ProductType) {
+export default function Product({
+  id,
+  title,
+  description,
+  imageURL,
+}: ProductType) {
   return (
-    <ProductModal title={title} description={description} imageURL={imageURL}>
+    <ProductModal
+      id={id}
+      title={title}
+      description={description}
+      imageURL={imageURL}
+    >
       <Card className="max-w-[240px] py-4">
         <CardHeader className="flex-col items-start px-4 pb-0 pt-2">
           <h4 className="text-large font-bold">{title}</h4>

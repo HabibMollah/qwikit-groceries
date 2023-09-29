@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/use-disclosure";
@@ -13,9 +14,11 @@ import NextImage from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { BiEdit } from "react-icons/bi";
 import { MdAddShoppingCart } from "react-icons/md";
+import { useCartContext } from "@/contexts/CartContext";
 
 type Props = {
   children: React.ReactNode;
+  id: number;
   title: string;
   description: string;
   imageURL: string;
@@ -23,11 +26,18 @@ type Props = {
 
 export default function ProductModal({
   children,
+  id,
   title,
   description,
   imageURL,
 }: Props) {
+  const { cartItems, setCartItems } = useCartContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const handleAddToCart = () => {
+    const newCartItems = [...cartItems, { id, title, description, imageURL }];
+    setCartItems(newCartItems);
+  };
 
   return (
     <>
@@ -68,7 +78,7 @@ export default function ProductModal({
                   <BiEdit />
                   Edit
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onClick={handleAddToCart}>
                   <MdAddShoppingCart />
                   Add to Cart
                 </Button>
