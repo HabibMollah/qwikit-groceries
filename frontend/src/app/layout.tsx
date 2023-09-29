@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import NavBar from '../components/NavBar';
+import SearchBar from '@/components/SearchBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          <main className="max-w-[1024px] mx-auto px-6">{children}</main>
+          <main className="max-w-[1024px] mx-auto px-6">
+            <SearchBar />
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
