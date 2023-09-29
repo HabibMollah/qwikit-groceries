@@ -31,7 +31,7 @@ export default function ModalForm({
       <Button className={className} onClick={onOpen} color="primary">
         {children}
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
         <ModalContent>
           {(onClose) => (
             <>
