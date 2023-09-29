@@ -12,6 +12,7 @@ import { Image } from "@nextui-org/image";
 import NextImage from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { BiEdit } from "react-icons/bi";
+import { MdAddShoppingCart } from "react-icons/md";
 
 type Props = {
   children: React.ReactNode;
@@ -66,6 +67,10 @@ export default function ProductModal({
                 <Button color="success" onPress={onClose}>
                   <BiEdit />
                   Edit
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  <MdAddShoppingCart />
+                  Add to Cart
                 </Button>
               </ModalFooter>
             </>
