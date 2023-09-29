@@ -15,6 +15,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { BiEdit } from "react-icons/bi";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useCartContext } from "@/contexts/CartContext";
+import ModalForm from "./ModalForm";
 
 type Props = {
   children: React.ReactNode;
@@ -77,11 +78,13 @@ export default function ProductModal({
                 <Button color="danger" onPress={onClose}>
                   <FiTrash2 /> Remove
                 </Button>
-                <Button color="success" onPress={onClose}>
+                {/* <Button color="success" onPress={onClose}> */}
+                <ModalForm>
                   <BiEdit />
                   Edit
-                </Button>
-                <Button color="primary" onClick={() => handleAddToCart(id)}>
+                </ModalForm>
+                {/* </Button> */}
+                <Button color="success" onClick={() => handleAddToCart(id)}>
                   <MdAddShoppingCart />
                   Add to Cart
                 </Button>
