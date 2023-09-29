@@ -6,7 +6,7 @@ export default async function Products() {
 
   if (products)
     return (
-      <section className="mx-auto grid grid-cols-1 gap-4 justify-self-center py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <section className="mx-auto grid grid-cols-1 justify-items-center gap-4 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <Product
             key={product.id}
