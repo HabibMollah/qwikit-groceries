@@ -6,6 +6,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -16,12 +17,18 @@ type CartContextType = {
 
 export const CartContext = createContext<null | CartContextType>(null);
 
+const savedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
 export default function CartContextProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [cartItems, setCartItems] = useState<ProductType[]>([]);
+  const [cartItems, setCartItems] = useState<ProductType[]>(savedItems);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
