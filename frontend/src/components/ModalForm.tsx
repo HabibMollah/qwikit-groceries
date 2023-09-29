@@ -1,19 +1,16 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalFooter,
-  Button,
-  useDisclosure,
-  Checkbox,
-  Input,
-  Link,
-  Textarea,
-} from '@nextui-org/react';
-import { MdLock, MdMail } from 'react-icons/md';
+} from '@nextui-org/modal';
+
+import { useDisclosure } from '@nextui-org/use-disclosure';
+import { Button } from '@nextui-org/button';
+import { Input, Textarea } from '@nextui-org/input';
 import { BiLink } from 'react-icons/bi';
 import { BsBoxSeam } from 'react-icons/bs';
 
