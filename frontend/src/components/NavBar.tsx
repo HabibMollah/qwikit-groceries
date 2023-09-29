@@ -29,8 +29,8 @@ export default function NavBar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <TfiShoppingCartFull />
-          <p className="font-bold text-inherit">QwikIT Groceries</p>
+          <TfiShoppingCartFull size={24} />
+          <p className="font-bold sm:text-xl text-inherit">QwikIT Groceries</p>
         </NavbarBrand>
       </NavbarContent>
 
