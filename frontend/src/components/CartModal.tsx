@@ -22,8 +22,15 @@ export default function CartModal({
   children: ReactNode;
   className?: string | undefined;
 }) {
-  const { cartItems } = useCartContext();
+  const { cartItems, setCartItems } = useCartContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const handleEmptyCart = () => {
+    setCartItems([]);
+  };
+  const handleRemoveFromCart = (id: number) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -48,7 +55,7 @@ export default function CartModal({
                       key={item.id}
                     >
                       <div className="flex items-center gap-2">
-                        <button>
+                        <button onClick={() => handleRemoveFromCart(item.id)}>
                           <RxCross1 size={20} color="#f00" />
                         </button>
                         <h6>
@@ -73,11 +80,11 @@ export default function CartModal({
                 )}
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button color="danger" variant="light" onClick={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
+                <Button color="danger" onClick={handleEmptyCart}>
+                  Empty Cart
                 </Button>
               </ModalFooter>
             </>
