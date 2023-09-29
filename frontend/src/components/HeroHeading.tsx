@@ -6,7 +6,7 @@ export default function HeroHeading() {
   const { searchValue } = useSearchContext();
 
   return (
-    <h2 className="pt-4 text-4xl">
+    <h2 className="pt-8 text-4xl">
       {searchValue
         ? `Find products named '${searchValue}'`
         : "Browse grocery products"}
