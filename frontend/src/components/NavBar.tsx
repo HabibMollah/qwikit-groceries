@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 import {
   Navbar,
@@ -9,12 +9,12 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-} from '@nextui-org/navbar';
-import { TfiShoppingCartFull } from 'react-icons/tfi';
-import { BiAddToQueue } from 'react-icons/bi';
-import Cart from './Cart';
-import ThemeSwitcher from './ThemeSwitcher';
-import ModalForm from './ModalForm';
+} from "@nextui-org/navbar";
+import { TfiShoppingCartFull } from "react-icons/tfi";
+import { BiAddToQueue } from "react-icons/bi";
+import Cart from "./Cart";
+import ThemeSwitcher from "./ThemeSwitcher";
+import ModalForm from "./ModalForm";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,18 +23,19 @@ export default function NavBar() {
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
           <TfiShoppingCartFull size={24} />
-          <p className="font-bold sm:text-xl text-inherit">QwikIT Groceries</p>
+          <p className="font-bold text-inherit sm:text-xl">QwikIT Groceries</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex gap-4"
-        justify="center"></NavbarContent>
+        className="hidden gap-4 sm:flex"
+        justify="center"
+      ></NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden sm:list-item">
           <ThemeSwitcher />
@@ -54,13 +55,13 @@ export default function NavBar() {
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
-          <ModalForm className="w-full flex">
+          <ModalForm className="flex w-full">
             <BiAddToQueue size={22} />
             Add A Product
           </ModalForm>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <div className="flex justify-between w-full">
+          <div className="flex w-full justify-between">
             Dark Mode
             <ThemeSwitcher />
           </div>

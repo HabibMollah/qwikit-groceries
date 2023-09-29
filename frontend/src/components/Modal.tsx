@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 import {
   Modal,
@@ -6,9 +6,9 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
-} from '@nextui-org/modal';
-import { Button } from '@nextui-org/button';
-import { useDisclosure } from '@nextui-org/use-disclosure';
+} from "@nextui-org/modal";
+import { Button } from "@nextui-org/button";
+import { useDisclosure } from "@nextui-org/use-disclosure";
 
 export default function ModalComponent({
   children,
@@ -28,7 +28,8 @@ export default function ModalComponent({
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        scrollBehavior="inside">
+        scrollBehavior="inside"
+      >
         <ModalContent>
           {(onClose) => (
             <>

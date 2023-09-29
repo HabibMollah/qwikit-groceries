@@ -1,11 +1,11 @@
-import ProductType from '@/types/ProductType';
+import ProductType from "@/types/ProductType";
 
-export const baseURL = 'https://qwikit-groceries-backend.vercel.app/api/v1';
+export const baseURL = "https://qwikit-groceries-backend.vercel.app/api/v1";
 
 export default async function getData() {
   try {
     const res = await fetch(`${baseURL}/groceries`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);

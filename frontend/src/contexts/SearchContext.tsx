@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   Dispatch,
   ReactNode,
@@ -6,7 +6,7 @@ import {
   createContext,
   useContext,
   useState,
-} from 'react';
+} from "react";
 
 type SearchContextType = {
   searchValue: string;
@@ -20,7 +20,7 @@ export default function SearchContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <SearchContext.Provider value={{ searchValue, setSearchValue }}>
@@ -33,7 +33,7 @@ export function useSearchContext() {
   const context = useContext(SearchContext);
   if (context === null) {
     throw new Error(
-      'useSearchContext must be used within a SearchContextProvider'
+      "useSearchContext must be used within a SearchContextProvider",
     );
   }
 

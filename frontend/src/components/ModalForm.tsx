@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 import {
   Modal,
@@ -6,13 +6,13 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
-} from '@nextui-org/modal';
+} from "@nextui-org/modal";
 
-import { useDisclosure } from '@nextui-org/use-disclosure';
-import { Button } from '@nextui-org/button';
-import { Input, Textarea } from '@nextui-org/input';
-import { BiLink } from 'react-icons/bi';
-import { BsBoxSeam } from 'react-icons/bs';
+import { useDisclosure } from "@nextui-org/use-disclosure";
+import { Button } from "@nextui-org/button";
+import { Input, Textarea } from "@nextui-org/input";
+import { BiLink } from "react-icons/bi";
+import { BsBoxSeam } from "react-icons/bs";
 
 export default function ModalForm({
   children,
@@ -40,7 +40,7 @@ export default function ModalForm({
                   isRequired
                   autoFocus
                   endContent={
-                    <BsBoxSeam className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                    <BsBoxSeam className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
                   }
                   label="Title"
                   labelPlacement="outside"
@@ -60,7 +60,7 @@ export default function ModalForm({
                 <Input
                   isRequired
                   endContent={
-                    <BiLink className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                    <BiLink className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
                   }
                   label="Image URL"
                   labelPlacement="outside"
