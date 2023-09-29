@@ -13,7 +13,6 @@ export default function Home() {
           : 'Browse grocery products'}
       </h2>
       <Button>Next UI Button</Button>
-      <ModalComponent />
     </>
   );
 }
