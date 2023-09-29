@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalFooter,
-  Button,
-  useDisclosure,
-} from '@nextui-org/react';
+} from '@nextui-org/modal';
+import { Button } from '@nextui-org/button';
+import { useDisclosure } from '@nextui-org/use-disclosure';
 
 export default function ModalComponent({
   children,
