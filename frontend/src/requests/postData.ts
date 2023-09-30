@@ -1,0 +1,32 @@
+import { ProductFormData } from "@/components/ModalForm";
+import { baseURL } from "./getData";
+
+export default async function postData(
+  urlEndpoint: string,
+  data: ProductFormData,
+) {
+  try {
+    const requestBody = {
+      title: data.title,
+      description: data.description,
+      imageURL: data.imageURL,
+    };
+
+    const response = await fetch(`${baseURL}${urlEndpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log("Post request successful:", responseData);
+    } else {
+      console.error("Post request failed:", response.statusText);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
