@@ -16,6 +16,8 @@ import { BiEdit } from "react-icons/bi";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useCartContext } from "@/contexts/CartContext";
 import ModalForm from "./ModalForm";
+import deleteData from "@/requests/deleteData";
+import { useRouter } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -34,12 +36,22 @@ export default function ProductModal({
 }: Props) {
   const { cartItems, setCartItems } = useCartContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter();
 
   const handleAddToCart = (itemID: number) => {
     if (cartItems.find((item) => item.id === itemID)) return;
     else {
       const newCartItems = [...cartItems, { id, title, description, imageURL }];
       setCartItems(newCartItems);
+    }
+  };
+
+  const handleProductDelete = async () => {
+    const response = await deleteData(id);
+    if (response) {
+      router.refresh();
+      onOpenChange();
+      alert("Success");
     }
   };
 
@@ -57,7 +69,7 @@ export default function ProductModal({
         onOpenChange={onOpenChange}
       >
         <ModalContent>
-          {(onClose) => (
+          {(_onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody className="">
@@ -75,7 +87,7 @@ export default function ProductModal({
                 <p className="text-left">{description}</p>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" onPress={onClose}>
+                <Button color="danger" onClick={handleProductDelete}>
                   <FiTrash2 /> Remove
                 </Button>
                 {/* <Button color="success" onPress={onClose}> */}
