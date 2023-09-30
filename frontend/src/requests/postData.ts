@@ -23,10 +23,13 @@ export default async function postData(
     if (response.ok) {
       const responseData = await response.json();
       console.log("Post request successful:", responseData);
+      return true;
     } else {
       console.error("Post request failed:", response.statusText);
+      return false;
     }
   } catch (error) {
     console.error("An error occurred:", error);
+    return false;
   }
 }
