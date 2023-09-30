@@ -1,4 +1,3 @@
-"use client";
 import ProductType from "@/types/ProductType";
 import {
   Dispatch,
@@ -17,17 +16,23 @@ type CartContextType = {
 
 export const CartContext = createContext<null | CartContextType>(null);
 
-const savedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
 export default function CartContextProvider({
   children,
 }: {
   children: ReactNode;
 }) {
+  const savedItems = JSON.parse(
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("cartItems") || "[]"
+      : "[]",
+  );
+
   const [cartItems, setCartItems] = useState<ProductType[]>(savedItems);
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   return (
