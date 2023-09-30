@@ -17,6 +17,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import postData from "@/requests/postData";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
@@ -38,6 +39,7 @@ export default function ModalForm({
   children: ReactNode;
   className?: string | undefined;
 }) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -51,7 +53,9 @@ export default function ModalForm({
     const response = await postData("/groceries", data);
     if (response) {
       reset();
-      alert("Product added successfully");
+      alert("Success");
+      router.refresh();
+      onOpenChange();
     }
   };
 
@@ -107,7 +111,7 @@ export default function ModalForm({
                   />
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="flat" onPress={onClose}>
+                  <Button color="danger" variant="flat" onClick={onClose}>
                     Cancel
                   </Button>
                   <Button type="submit" color="primary">
