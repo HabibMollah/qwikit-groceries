@@ -12,9 +12,9 @@
 - Run `pnpm install` to install all dependencies
 - Run `pnpm run dev` to start the dev server
 - Go to the port _e.g_ `http://localhost:3000`
-- Enjoy the frontend
+- Enjoy the frontend!
 
-### To Run the Backend Locally You'll Need Database Secrets. I am Not Providing Mine. They're in My Machine Loaclly.
+### To Run the Backend Locally You'll Need Database Secrets. I am Not Providing Mine. They're in My Machine Locally.
 
 # 🔗 Live Links:
 
