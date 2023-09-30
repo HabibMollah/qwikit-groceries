@@ -47,7 +47,7 @@ export default function NavBar() {
           {/* <Button className="hidden sm:list-item" color="primary" size="md">
             Add A Product
           </Button> */}
-          <ModalForm className="hidden sm:flex">
+          <ModalForm formType="add" className="hidden sm:flex">
             <BiAddToQueue size={22} />
             Add A Product
           </ModalForm>
@@ -55,7 +55,7 @@ export default function NavBar() {
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
-          <ModalForm className="flex w-full">
+          <ModalForm formType="add" className="flex w-full">
             <BiAddToQueue size={22} />
             Add A Product
           </ModalForm>

@@ -91,7 +91,13 @@ export default function ProductModal({
                   <FiTrash2 /> Remove
                 </Button>
                 {/* <Button color="success" onPress={onClose}> */}
-                <ModalForm>
+                <ModalForm
+                  title={title}
+                  description={description}
+                  imageURL={imageURL}
+                  id={id}
+                  formType="update"
+                >
                   <BiEdit />
                   Edit
                 </ModalForm>

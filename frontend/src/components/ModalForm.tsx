@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import postData from "@/requests/postData";
 import { useRouter } from "next/navigation";
+import updateData from "@/requests/updateData";
 
 const schema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
@@ -34,10 +35,20 @@ export type ProductFormData = z.infer<typeof schema>;
 
 export default function ModalForm({
   children,
+  formType,
+  id,
+  title,
+  description,
+  imageURL,
   className,
 }: {
   children: ReactNode;
+  formType: "update" | "add";
+  id?: number;
   className?: string | undefined;
+  title?: string;
+  description?: string;
+  imageURL?: string;
 }) {
   const router = useRouter();
   const {
@@ -50,12 +61,23 @@ export default function ModalForm({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const onSubmit = async (data: ProductFormData) => {
-    const response = await postData("/groceries", data);
-    if (response) {
-      reset();
-      alert("Success");
-      router.refresh();
-      onOpenChange();
+    if (formType === "add") {
+      const response = await postData(data);
+      if (response) {
+        reset();
+        alert("Success");
+        router.refresh();
+        onOpenChange();
+      }
+    }
+    if (formType === "update" && id) {
+      const response = await updateData(id, data);
+      if (response) {
+        reset();
+        alert("Success");
+        router.refresh();
+        onOpenChange();
+      }
     }
   };
 
@@ -82,6 +104,7 @@ export default function ModalForm({
                     }
                     label="Title"
                     labelPlacement="outside"
+                    defaultValue={title}
                     placeholder="Enter product name e.g. Dairy Milk"
                     variant="bordered"
                     errorMessage={errors.title?.message}
@@ -93,6 +116,7 @@ export default function ModalForm({
                     variant="bordered"
                     label="Description"
                     labelPlacement="outside"
+                    defaultValue={description}
                     placeholder="Enter product details e.g. Farm fresh milk from Austrailia."
                     errorMessage={errors.description?.message}
                     className=""
@@ -105,6 +129,7 @@ export default function ModalForm({
                     }
                     label="Image URL"
                     labelPlacement="outside"
+                    defaultValue={imageURL}
                     placeholder="e.g. https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80"
                     variant="bordered"
                     errorMessage={errors.imageURL?.message}
