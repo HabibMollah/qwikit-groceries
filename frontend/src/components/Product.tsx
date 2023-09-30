@@ -20,7 +20,9 @@ export default function Product({
     >
       <Card className="max-w-[240px] py-4">
         <CardHeader className="flex-col items-start px-4 pb-0 pt-2">
-          <h4 className="text-large font-bold">{title}</h4>
+          <h4 className="text-large font-bold">
+            {title.length > 14 ? title.slice(0, 14) + "..." : title}
+          </h4>
         </CardHeader>
         <CardBody className="overflow-visible py-2">
           <Image
