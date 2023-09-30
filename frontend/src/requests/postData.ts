@@ -1,10 +1,7 @@
 import { ProductFormData } from "@/components/ModalForm";
 import { baseURL } from "./getData";
 
-export default async function postData(
-  urlEndpoint: string,
-  data: ProductFormData,
-) {
+export default async function postData(data: ProductFormData) {
   try {
     const requestBody = {
       title: data.title,
@@ -12,7 +9,7 @@ export default async function postData(
       imageURL: data.imageURL,
     };
 
-    const response = await fetch(`${baseURL}${urlEndpoint}`, {
+    const response = await fetch(`${baseURL}/groceries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
