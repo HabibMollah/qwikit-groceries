@@ -42,12 +42,17 @@ export default function ModalForm({
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ProductFormData>({ resolver: zodResolver(schema) });
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const onSubmit = (data: ProductFormData) => {
-    postData("/groceries", data);
+  const onSubmit = async (data: ProductFormData) => {
+    const response = await postData("/groceries", data);
+    if (response) {
+      reset();
+      alert("Product added successfully");
+    }
   };
 
   return (
